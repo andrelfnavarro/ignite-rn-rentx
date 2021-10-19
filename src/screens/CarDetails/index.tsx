@@ -13,6 +13,7 @@ import {
   Price,
   About,
   Accessories,
+  Footer,
 } from './styles';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -24,6 +25,7 @@ import ForceSvg from '../../assets/force.svg';
 import GasolineSvg from '../../assets/gasoline.svg';
 import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
+import { Button } from '../../components/Button';
 
 export function CarDetails() {
   return (
@@ -63,11 +65,15 @@ export function CarDetails() {
         </Accessories>
 
         <About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          Este é um automóvel desportivo. Surgiu do lendário touro de lide
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
           para quem gosta de acelerar.
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Escolher período do aluguel" />
+      </Footer>
     </Container>
   );
 }
