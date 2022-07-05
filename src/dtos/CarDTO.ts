@@ -9,11 +9,20 @@ const Car = z.object({
     period: z.string(),
     price: z.number(),
   }),
-  fuel_type: z.string(),
+  fuel_type: z.enum(['gasoline_motor', 'electric_motor', 'hybrid_motor']),
   thumbnail: z.string().url(),
   accessories: z.array(
     z.object({
-      type: z.string(),
+      type: z.enum([
+        'speed',
+        'acceleration',
+        'turning_diameter',
+        'exchange',
+        'seats',
+        'electric_motor',
+        'gasoline_motor',
+        'hybrid_motor',
+      ]),
       name: z.string(),
     })
   ),

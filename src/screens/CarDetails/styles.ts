@@ -19,6 +19,7 @@ export const Header = styled.View`
   position: absolute;
   margin-top: ${getStatusBarHeight() + 32}px;
   margin-left: 24px;
+  z-index: 1;
 `;
 
 export const ImageSliderWrapper = styled.View`
