@@ -73,7 +73,7 @@ export function Home() {
         />
       )}
 
-      <MyCarsButton>
+      <MyCarsButton onPress={() => navigation.navigate('MyCars')}>
         <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
       </MyCarsButton>
     </Container>

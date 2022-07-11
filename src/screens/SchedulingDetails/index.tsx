@@ -71,12 +71,21 @@ export function SchedulingDetails() {
 
       const unavailableDates = [...carSchedules.unavailable_dates, ...dates];
 
+      await api.post('schedules_byuser', {
+        user_id: 42,
+        date_start: rentPeriod.start,
+        date_end: rentPeriod.end,
+        car,
+      });
+
       await api.put(`/schedules_bycars/${car.id}`, {
         id: car.id,
         unavailable_dates: unavailableDates,
       });
     } catch (error) {
+      console.log(error);
       Alert.alert('Erro ao alugar o carro. Tente novamente.');
+      return;
     }
 
     navigation.navigate('SchedulingComplete');
