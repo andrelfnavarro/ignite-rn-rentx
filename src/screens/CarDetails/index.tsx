@@ -25,17 +25,17 @@ import { Button } from '../../components/Button';
 import { TCar } from '../../dtos/CarDTO';
 import { getCarAccessoryIcon } from '../../utils/getCarAccessoryIcon';
 
-interface RouteParams {
+export interface CarDetailsRouteParams {
   car: TCar;
 }
 
 export function CarDetails() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { car } = route.params as RouteParams;
+  const { car } = route.params as CarDetailsRouteParams;
 
   const handleConfirm = () => {
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', { car });
   };
 
   return (

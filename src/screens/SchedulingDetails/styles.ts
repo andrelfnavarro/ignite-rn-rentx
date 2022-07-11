@@ -4,6 +4,7 @@ import {
   getStatusBarHeight,
 } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -19,6 +20,7 @@ export const Header = styled.View`
   position: absolute;
   margin-top: ${getStatusBarHeight() + 32}px;
   margin-left: 24px;
+  z-index: 1;
 `;
 
 export const ImageSliderWrapper = styled.View`
@@ -30,7 +32,6 @@ export const Content = styled.ScrollView.attrs({
     padding: 24,
     alignItems: 'center',
   },
-  c: false,
 })``;
 
 export const Details = styled.View`
@@ -98,7 +99,7 @@ export const RentalPeriod = styled.View`
   padding-bottom: 16px;
 `;
 
-export const CalendarIcon = styled.View`
+export const CalendarIcon = styled(RectButton)`
   width: 48px;
   height: 48px;
 
