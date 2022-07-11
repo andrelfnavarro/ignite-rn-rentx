@@ -4,6 +4,8 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 interface ContainerProps extends RectButtonProps {
   color: string;
+  enabled: boolean;
+  loading: boolean;
 }
 
 export const Container = styled(RectButton)<ContainerProps>`
@@ -14,6 +16,7 @@ export const Container = styled(RectButton)<ContainerProps>`
   justify-content: center;
 
   background-color: ${({ theme, color }) => color ?? theme.colors.main};
+  opacity: ${({ enabled, loading }) => (enabled || !loading ? 1 : 0.5)};
 `;
 
 export const Title = styled.Text`

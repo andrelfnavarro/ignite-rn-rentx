@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -54,6 +54,7 @@ export function SchedulingDetails() {
 
   const route = useRoute();
   const { car, dates } = route.params as SchedulingDetailsRouteParams;
+  const [loading, setLoading] = useState(false);
 
   const rentPeriod = {
     start: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
@@ -65,6 +66,7 @@ export function SchedulingDetails() {
 
   const handleRent = async () => {
     try {
+      setLoading(true);
       const { data: carSchedules } = await api.get(
         `/schedules_bycars/${car.id}`
       );
@@ -83,8 +85,8 @@ export function SchedulingDetails() {
         unavailable_dates: unavailableDates,
       });
     } catch (error) {
-      console.log(error);
       Alert.alert('Erro ao alugar o carro. Tente novamente.');
+      setLoading(false);
       return;
     }
 
@@ -169,6 +171,7 @@ export function SchedulingDetails() {
           title="Alugar agora"
           color={theme.colors.success}
           onPress={handleRent}
+          loading={loading}
         />
       </Footer>
     </Container>
