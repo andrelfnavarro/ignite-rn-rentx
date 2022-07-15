@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { FlatList, ViewToken } from 'react-native';
+import { TCar } from '../../dtos/CarDTO';
 import {
   Container,
   ImageIndexes,
@@ -12,23 +14,40 @@ interface Props {
 }
 
 export function ImageSlider({ imagesUrl }: Props) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const indexChange = useRef(
+    (info: { viewableItems: ViewToken[]; changed: ViewToken[] }) => {
+      const index = info.viewableItems[0].index!;
+
+      setCurrentIndex(index);
+    }
+  );
+
   return (
     <Container>
       <ImageIndexes>
-        <ImageIndex active={true} />
-        <ImageIndex active={false} />
-        <ImageIndex active={false} />
-        <ImageIndex active={false} />
+        {imagesUrl.map((item, index) => (
+          <ImageIndex
+            key={'indicator-' + String(index)}
+            active={currentIndex === index}
+          />
+        ))}
       </ImageIndexes>
 
-      <CarImageWrapper>
-        <CarImage
-          resizeMode="contain"
-          source={{
-            uri: imagesUrl[0],
-          }}
-        />
-      </CarImageWrapper>
+      <FlatList
+        data={imagesUrl}
+        keyExtractor={item => item}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        onViewableItemsChanged={indexChange.current}
+        renderItem={({ item }) => (
+          <CarImageWrapper>
+            <CarImage source={{ uri: item }} />
+          </CarImageWrapper>
+        )}
+      />
     </Container>
   );
 }
