@@ -25,7 +25,7 @@ import api from '../../services/api';
 import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
 import { TCar } from '../../dtos/CarDTO';
-import { Loader } from '../../components/Loader';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 export function Home() {
   const [cars, setCars] = useState<TCar[]>([]);
@@ -108,7 +108,7 @@ export function Home() {
       </Header>
 
       {loading ? (
-        <Loader />
+        <LoadAnimation />
       ) : (
         <CarList
           data={cars}

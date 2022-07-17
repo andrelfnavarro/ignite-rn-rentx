@@ -20,12 +20,11 @@ import {
   CarFooterDate,
 } from './styles';
 
-import { TCar } from '../../dtos/CarDTO';
 import api from '../../services/api';
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
 import { TUserSchedules } from '../../dtos/UserSchedulesDTO';
-import { Loader } from '../../components/Loader';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 export const MyCars = () => {
   const [cars, setCars] = useState<TUserSchedules>([]);
@@ -69,7 +68,7 @@ export const MyCars = () => {
       </Header>
 
       {loading ? (
-        <Loader />
+        <LoadAnimation />
       ) : (
         <Content>
           <Appointments>
