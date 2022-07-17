@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button, Dimensions } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -13,8 +12,6 @@ import { Container } from './styles';
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
 import { useNavigation } from '@react-navigation/native';
-
-const WIDTH = Dimensions.get('window').width;
 
 export function Splash() {
   const navigation = useNavigation();
