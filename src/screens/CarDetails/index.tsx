@@ -45,7 +45,6 @@ export function CarDetails() {
 
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler(event => {
-    console.log(event.contentOffset.y);
     scrollY.value = event.contentOffset.y;
   });
 

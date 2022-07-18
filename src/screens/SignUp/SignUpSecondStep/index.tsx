@@ -60,7 +60,6 @@ export const SignUpSecondStep = () => {
   const handleRegister = () => {
     try {
       SignUpSchema.parse({ password, passwordConfirmation });
-      console.log('CADASTRANDO', { ...user, password });
 
       navigation.navigate('Confirmation', {
         title: 'Conta criada!',
