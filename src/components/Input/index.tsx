@@ -30,8 +30,8 @@ export function Input({
   };
 
   return (
-    <Container isFocused={isFocused}>
-      <IconContainer>
+    <Container>
+      <IconContainer isFocused={isFocused}>
         <Feather
           name={iconName}
           size={24}
@@ -43,6 +43,7 @@ export function Input({
 
       <InputField
         {...rest}
+        isFocused={isFocused}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         secureTextEntry={secureTextEntry && !showPassword}

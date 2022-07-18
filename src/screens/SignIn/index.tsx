@@ -1,20 +1,45 @@
 import React from 'react';
 import {
+  Alert,
   Keyboard,
   KeyboardAvoidingView,
   StatusBar,
   TouchableWithoutFeedback,
 } from 'react-native';
 import { useTheme } from 'styled-components/native';
+import { z, ZodError } from 'zod';
+
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 
 import { Footer, Container, Header, SubTitle, Title, Form } from './styles';
 
+const LoginSchema = z.object({
+  email: z
+    .string({ required_error: 'E-mail obrigatório' })
+    .email('E-mail inválido'),
+  password: z
+    .string({ required_error: 'Senha obrigatória' })
+    .min(6, 'Senha deve ter no mínimo 6 caracteres'),
+});
+
 export const SignIn = () => {
   const theme = useTheme();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const handleSignIn = () => {
+    try {
+      LoginSchema.parse({ email, password });
+      Alert.alert('DEU BOM');
+    } catch (error) {
+      if (error instanceof ZodError) {
+        Alert.alert(error.errors[0].message);
+      } else {
+        Alert.alert('Erro ao fazer login', 'Verifique as credenciais.');
+      }
+    }
+  };
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>
@@ -53,7 +78,7 @@ export const SignIn = () => {
           </Form>
 
           <Footer>
-            <Button title="Login" enabled={false} loading={false} />
+            <Button title="Login" onPress={handleSignIn} />
 
             <Button
               light
