@@ -8,7 +8,7 @@ import {
   SchedulingDetails,
   SchedulingDetailsRouteParams,
 } from '../screens/SchedulingDetails';
-import { SchedulingComplete } from '../screens/SchedulingComplete';
+import { ConfirmationParams, Confirmation } from '../screens/Confirmation';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
 import { SignIn } from '../screens/SignIn';
@@ -23,7 +23,7 @@ export type RootStackParamList = {
   CarDetails: CarDetailsRouteParams;
   Scheduling: SchedulingRouteParams;
   SchedulingDetails: SchedulingDetailsRouteParams;
-  SchedulingComplete: undefined;
+  Confirmation: ConfirmationParams;
   MyCars: undefined;
   Splash: undefined;
   SignIn: undefined;
@@ -49,7 +49,7 @@ export function StackRoutes() {
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
-      <Screen name="SchedulingComplete" component={SchedulingComplete} />
+      <Screen name="Confirmation" component={Confirmation} />
       <Screen name="MyCars" component={MyCars} />
     </Navigator>
   );

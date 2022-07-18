@@ -90,7 +90,11 @@ export function SchedulingDetails() {
       return;
     }
 
-    navigation.navigate('SchedulingComplete');
+    navigation.navigate('Confirmation', {
+      title: 'Carro alugado!',
+      message: `Agora você só precisa ir\naté a concessinária da RENTX\npegar seu automóvel.`,
+      nextScreenRoute: 'Home',
+    });
   };
 
   return (

@@ -60,7 +60,13 @@ export const SignUpSecondStep = () => {
   const handleRegister = () => {
     try {
       SignUpSchema.parse({ password, passwordConfirmation });
-      // navigation.navigate('SignUpSecondStep');
+      console.log('CADASTRANDO', { ...user, password });
+
+      navigation.navigate('Confirmation', {
+        title: 'Conta criada!',
+        message: `Agora é só fazer o login e\naproveitar.`,
+        nextScreenRoute: 'Home',
+      });
     } catch (error) {
       if (error instanceof ZodError) {
         Alert.alert(error.errors[0].message);
