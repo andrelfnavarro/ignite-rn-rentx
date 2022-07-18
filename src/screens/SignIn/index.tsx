@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   Alert,
@@ -14,7 +15,7 @@ import { Input } from '../../components/Input';
 
 import { Footer, Container, Header, SubTitle, Title, Form } from './styles';
 
-const LoginSchema = z.object({
+const SignInSchema = z.object({
   email: z
     .string({ required_error: 'E-mail obrigatório' })
     .email('E-mail inválido'),
@@ -25,12 +26,14 @@ const LoginSchema = z.object({
 
 export const SignIn = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleSignIn = () => {
     try {
-      LoginSchema.parse({ email, password });
+      SignInSchema.parse({ email, password });
       Alert.alert('DEU BOM');
     } catch (error) {
       if (error instanceof ZodError) {
@@ -84,6 +87,7 @@ export const SignIn = () => {
               light
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
+              onPress={() => navigation.navigate('SignUpFirstStep')}
             />
           </Footer>
         </Container>
