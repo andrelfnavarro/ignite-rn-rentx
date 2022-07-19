@@ -25,6 +25,7 @@ import {
   SubTitle,
   StepTitle,
 } from './styles';
+import api from '../../../services/api';
 
 export interface SignUpSecondStepParams {
   user: {
@@ -57,9 +58,15 @@ export const SignUpSecondStep = () => {
   const [password, setPassword] = React.useState('');
   const [passwordConfirmation, setPasswordConfirmation] = React.useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     try {
       SignUpSchema.parse({ password, passwordConfirmation });
+
+      await api.post('/users', {
+        ...user,
+        driver_license: user.driverLicense,
+        password,
+      });
 
       navigation.navigate('Confirmation', {
         title: 'Conta criada!',

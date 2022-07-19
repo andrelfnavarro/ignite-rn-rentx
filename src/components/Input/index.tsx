@@ -51,7 +51,7 @@ export function Input({
 
       {secureTextEntry && (
         <BorderlessButton onPress={() => setShowPassword(state => !state)}>
-          <IconContainer>
+          <IconContainer isFocused={isFocused}>
             <Feather
               name={showPassword ? 'eye' : 'eye-off'}
               size={24}
