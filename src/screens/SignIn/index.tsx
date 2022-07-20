@@ -12,6 +12,7 @@ import { z, ZodError } from 'zod';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { useAuth } from '../../hooks/auth';
 
 import { Footer, Container, Header, SubTitle, Title, Form } from './styles';
 
@@ -27,14 +28,16 @@ const SignInSchema = z.object({
 export const SignIn = () => {
   const theme = useTheme();
   const navigation = useNavigation();
+  const { signIn } = useAuth();
 
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     try {
       SignInSchema.parse({ email, password });
-      Alert.alert('DEU BOM');
+
+      await signIn({ email, password });
     } catch (error) {
       if (error instanceof ZodError) {
         Alert.alert(error.errors[0].message);

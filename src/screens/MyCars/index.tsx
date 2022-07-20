@@ -60,9 +60,7 @@ export const MyCars = () => {
           color={theme.colors.shape}
           onPress={() => navigation.goBack()}
         />
-        <Title>
-          Escolha uma{'\n'}data de início e{'\n'}fim do aluguel
-        </Title>
+        <Title>Seus agendamentos{'\n'}estão aqui.</Title>
 
         <SubTitle>Conforto, segurança e praticidade.</SubTitle>
       </Header>

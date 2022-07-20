@@ -1,18 +1,27 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { RootStackParamList, StackRoutes } from './stack.routes';
+import { AppStackParamList, AppStackRoutes } from './app.stack.routes';
+import { AppTabParamList, AppTabRoutes } from './app.tab.routes';
+import { AuthRoutes, AuthRoutesParamList } from './auth.routes';
+
+import { useAuth } from '../hooks/auth';
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList
+      extends AppStackParamList,
+        AppTabParamList,
+        AuthRoutesParamList {}
   }
 }
 
 export function Routes() {
+  const { user } = useAuth();
+
   return (
     <NavigationContainer>
-      <StackRoutes />
+      {user?.id ? <AppTabRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }
