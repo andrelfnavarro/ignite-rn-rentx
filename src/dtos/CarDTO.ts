@@ -5,14 +5,14 @@ export const Car = z.object({
   brand: z.string(),
   name: z.string(),
   about: z.string(),
-  rent: z.object({
-    period: z.string(),
-    price: z.number(),
-  }),
+  period: z.string(),
+  price: z.number(),
   fuel_type: z.enum(['gasoline_motor', 'electric_motor', 'hybrid_motor']),
   thumbnail: z.string().url(),
   accessories: z.array(
     z.object({
+      id: z.string(),
+      car_id: z.string(),
       type: z.enum([
         'speed',
         'acceleration',
@@ -26,7 +26,13 @@ export const Car = z.object({
       name: z.string(),
     })
   ),
-  photos: z.array(z.string().url()),
+  photos: z.array(
+    z.object({
+      id: z.string(),
+      car_id: z.string(),
+      photo: z.string().url(),
+    })
+  ),
 });
 
 export type TCar = z.infer<typeof Car>;

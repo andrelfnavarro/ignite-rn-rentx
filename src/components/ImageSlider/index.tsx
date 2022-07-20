@@ -1,10 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { FlatList, ViewToken } from 'react-native';
+import { TCar } from '../../dtos/CarDTO';
 import { Bullet } from '../Bullet';
 import { Container, ImageIndexes, CarImageWrapper, CarImage } from './styles';
 
 interface Props {
-  imagesUrl: string[];
+  imagesUrl: TCar['photos'];
 }
 
 export function ImageSlider({ imagesUrl }: Props) {
@@ -31,14 +32,14 @@ export function ImageSlider({ imagesUrl }: Props) {
 
       <FlatList
         data={imagesUrl}
-        keyExtractor={item => item}
+        keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
         pagingEnabled
         onViewableItemsChanged={indexChange.current}
         renderItem={({ item }) => (
           <CarImageWrapper>
-            <CarImage source={{ uri: item }} />
+            <CarImage source={{ uri: item.photo }} />
           </CarImageWrapper>
         )}
       />
