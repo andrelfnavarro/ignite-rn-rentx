@@ -1,9 +1,7 @@
 import { FlatList } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
-import { TCar } from '../../dtos/CarDTO';
+import { Car as DBCarModel } from '../../database/model/Car';
 
 export const Container = styled.View`
   flex: 1;
@@ -32,9 +30,11 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const CarList = styled(FlatList as new () => FlatList<TCar>).attrs({
-  contentContainerStyle: {
-    padding: 24,
-  },
-  showVerticalScrollIndicator: false,
-})``;
+export const CarList = styled(FlatList as new () => FlatList<DBCarModel>).attrs(
+  {
+    contentContainerStyle: {
+      padding: 24,
+    },
+    showVerticalScrollIndicator: false,
+  }
+)``;
