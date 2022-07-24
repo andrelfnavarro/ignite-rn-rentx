@@ -2,19 +2,18 @@ import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StatusBar, useWindowDimensions } from 'react-native';
 
-import { RootStackParamList } from '../../routes/stack.routes';
-
 import LogoSvg from '../../assets/logo_background_gray.svg';
 import DoneSvg from '../../assets/done.svg';
 
 import { ConfirmButton } from '../../components/ConfirmButton';
 
 import { Container, Content, Title, Message, Footer } from './styles';
+import { AppRoutesParamList } from '../../routes';
 
 export interface ConfirmationParams {
   title: string;
   message: string;
-  nextScreenRoute: keyof RootStackParamList;
+  nextScreenRoute: keyof AppRoutesParamList;
 }
 
 export const Confirmation: React.FC = () => {

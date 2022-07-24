@@ -71,7 +71,7 @@ export const SignUpSecondStep = () => {
       navigation.navigate('Confirmation', {
         title: 'Conta criada!',
         message: `Agora é só fazer o login e\naproveitar.`,
-        nextScreenRoute: 'Home',
+        nextScreenRoute: 'SignIn',
       });
     } catch (error) {
       if (error instanceof ZodError) {
