@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getBottomSpace,
-  getStatusBarHeight,
-} from 'react-native-iphone-x-helper';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -164,6 +161,6 @@ export const RentalPriceTotal = styled.Text`
 
 export const Footer = styled.View`
   width: 100%;
-  padding: 24px 24px ${getBottomSpace() + 24}px;
+  padding: 24px 24px 24px;
   background-color: ${({ theme }) => theme.colors.background_primary};
 `;

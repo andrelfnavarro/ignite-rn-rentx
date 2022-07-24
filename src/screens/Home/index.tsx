@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Button, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { synchronize } from '@nozbe/watermelondb/sync';
@@ -11,7 +11,6 @@ import api from '../../services/api';
 import { database } from '../../database';
 import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
-import { TCar } from '../../dtos/CarDTO';
 import { LoadAnimation } from '../../components/LoadAnimation';
 import { Car as DBCarModel } from '../../database/model/Car';
 
@@ -55,7 +54,6 @@ export function Home() {
       try {
         const carCollection = database.collections.get<DBCarModel>('cars');
         const carsFetched = await carCollection.query().fetch();
-        console.log(carsFetched);
         isMounted && setCars(carsFetched);
       } catch (error) {
         console.log(error);
@@ -91,8 +89,6 @@ export function Home() {
           {!loading && <TotalCars>Total de {cars.length} carros</TotalCars>}
         </HeaderContent>
       </Header>
-
-      <Button title="SYNC" onPress={offlineSync} />
 
       {loading ? (
         <LoadAnimation />
