@@ -1,4 +1,10 @@
 import React from 'react';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
+
 import {
   useFonts,
   Inter_400Regular,
