@@ -1,26 +1,27 @@
 import { Model } from '@nozbe/watermelondb';
 import { field } from '@nozbe/watermelondb/decorators';
+import { TUser } from '../../dtos/UserDTO';
 
 class User extends Model {
   static table = 'users';
 
   @field('user_id')
-  user_id!: string;
+  user_id!: TUser['user_id'];
 
   @field('name')
-  name!: string;
+  name!: TUser['name'];
 
   @field('email')
-  email!: string;
+  email!: TUser['email'];
 
   @field('driver_license')
-  driver_license!: string;
+  driver_license!: TUser['driver_license'];
 
   @field('avatar')
-  avatar!: string | null;
+  avatar!: TUser['avatar'];
 
   @field('token')
-  token!: string;
+  token!: TUser['token'];
 }
 
 export { User };
