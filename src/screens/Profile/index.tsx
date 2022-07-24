@@ -6,6 +6,7 @@ import { Alert, Keyboard, KeyboardAvoidingView } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
+import { z, ZodError } from 'zod';
 
 import { Input } from '../../components/Input';
 import { BackButton } from '../../components/BackButton';
@@ -25,7 +26,6 @@ import {
   Section,
 } from './styles';
 import { useAuth } from '../../hooks/auth';
-import { z, ZodError } from 'zod';
 import { Button } from '../../components/Button';
 
 type TabLabel = 'dataEdit' | 'passwordEdit';
@@ -100,6 +100,17 @@ export const Profile: React.FC = () => {
     }
   };
 
+  const handleSignOut = () => {
+    Alert.alert(
+      'Tem certeza?',
+      'Se você sair, precisará de internet para conectar novamente',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        { text: 'Sair', onPress: signOut },
+      ]
+    );
+  };
+
   return (
     <KeyboardAvoidingView behavior="position" enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -112,7 +123,7 @@ export const Profile: React.FC = () => {
               />
               <HeaderTitle>Editar perfil</HeaderTitle>
 
-              <LogoutButton onPress={signOut}>
+              <LogoutButton onPress={handleSignOut}>
                 <Feather name="power" color={theme.colors.shape} size={24} />
               </LogoutButton>
             </HeaderTop>
