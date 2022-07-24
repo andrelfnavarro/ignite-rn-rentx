@@ -6,6 +6,7 @@ import { AppTabParamList, AppTabRoutes } from './app.tab.routes';
 import { AuthRoutes, AuthRoutesParamList } from './auth.routes';
 
 import { useAuth } from '../hooks/auth';
+import { LoadAnimation } from '../components/LoadAnimation';
 
 export interface AppRoutesParamList
   extends AppStackParamList,
@@ -19,9 +20,11 @@ declare global {
 }
 
 export function Routes() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
-  return (
+  return loading ? (
+    <LoadAnimation />
+  ) : (
     <NavigationContainer>
       {user.id ? <AppTabRoutes /> : <AuthRoutes />}
     </NavigationContainer>
