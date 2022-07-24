@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getBottomSpace,
-  getStatusBarHeight,
-} from 'react-native-iphone-x-helper';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Animated from 'react-native-reanimated';
 
@@ -11,8 +8,6 @@ export const Container = styled.View`
 
   background-color: ${({ theme }) => theme.colors.background_secondary};
 `;
-
-export const AnimatedHeader = styled(Animated.View)``;
 
 export const Header = styled.View`
   flex-direction: row;
@@ -94,6 +89,14 @@ export const About = styled.Text`
 
 export const Footer = styled.View`
   width: 100%;
-  padding: 24px 24px ${getBottomSpace() + 24}px;
+  padding: 24px;
   background-color: ${({ theme }) => theme.colors.background_primary};
+`;
+
+export const OfflineInfo = styled.Text`
+  color: ${({ theme }) => theme.colors.main};
+  font-family: ${({ theme }) => theme.fonts.secondary_500};
+  font-size: ${RFValue(10)}px;
+
+  text-align: center;
 `;

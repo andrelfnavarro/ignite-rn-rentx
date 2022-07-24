@@ -7,6 +7,7 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import * as ImagePicker from 'expo-image-picker';
 import { z, ZodError } from 'zod';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 import { Input } from '../../components/Input';
 import { BackButton } from '../../components/BackButton';
@@ -52,6 +53,8 @@ const UpdateProfileSchema = z.object({
 export const Profile: React.FC = () => {
   const theme = useTheme();
   const navigation = useNavigation();
+  const netInfo = useNetInfo();
+
   const { user, signOut, updateUser } = useAuth();
 
   const [tab, setTab] = useState<TabLabel>('dataEdit');
@@ -60,6 +63,13 @@ export const Profile: React.FC = () => {
   const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
   const handleTabChange = (newTab: TabLabel) => {
+    if (!netInfo.isConnected && tab === 'passwordEdit') {
+      Alert.alert(
+        'Para mudar a senha, você precisa estar conectado a internet'
+      );
+      return;
+    }
+
     setTab(newTab);
   };
 

@@ -25,6 +25,7 @@ interface UpdateUserData {
 
 interface AuthContextData {
   user: TUser;
+  loading: boolean;
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => Promise<void>;
   updateUser: (user: UpdateUserData) => Promise<void>;
@@ -34,6 +35,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<TUser>({} as TUser);
+  const [loading, setLoading] = useState(true);
 
   const signIn = async (credentials: SignInCredentials) => {
     try {
@@ -104,13 +106,17 @@ const AuthProvider: React.FC = ({ children }) => {
         const userData = response[0]._raw as unknown as TUser;
         setData({ ...userData });
       }
+
+      setLoading(false);
     };
 
     loadUserData();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data, signIn, signOut, updateUser }}>
+    <AuthContext.Provider
+      value={{ user: data, loading, signIn, signOut, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
